@@ -6,7 +6,6 @@
 # Step 3: Create tombstone in PID entry, redirect URL and remove PID entries related to the iRODS path 
 # Step 4: Remove all data objects
 # NOTE:Will not remove collections.
-# Returns the PID
 
 tombstone {
     msiGetObjType(*path, *objType);
@@ -41,6 +40,7 @@ tombstone {
         }
         writeLine("stdout", "TOMBSTONE REQUIRED ACTION: 'irm -r *path'");
     }
+    
 }
 
 tombstone_for_obj(*path){
