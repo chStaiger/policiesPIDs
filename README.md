@@ -17,7 +17,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 - iRODS 4.1.10 or higher
 - PID microservices /etc/yum.repos.d/surfsara-irods.repo
 
-## Installation of microservices
+## Installation and configuration of microservices
+### Installation
 
 ```sh
 sudo cat > /etc/yum.repos.d/surfsara-irods.repo <<EOF
@@ -47,3 +48,44 @@ msiPidSet(*path, *key, *value, *result) (sets an arbitrary key-value pair in the
 msiPidUnset(*path, *key, *result) (removes a key with its value from Handle system)
 
 ```
+
+### Configuration
+
+- Copy /etc/irods_pid.json.template to /etc/irods_pid.json and edit:
+- Handle certificates
+- (optional) Davrods endpoint
+
+```
+{
+  "handle":{
+    "url": "https://epic5.storage.surfsara.nl/api/handles",
+    "port": 8003,
+    "prefix": "21.T12995",
+
+    "cert": "/etc/irods/308_21.T12995_TRAINING_certificate_only.pem",
+    "key": "/etc/irods/308_21.T12995_TRAINING_privkey.pem",
+
+    "insecure": true,
+    "passphrase": null
+  },
+  "lookup":{
+    "url": "https://epic5.storage.surfsara.nl/hrls/handles",
+    "port": 8003,
+    "user": "21.T12995",
+
+    "password": "<FILLIN_PASSWORD_FOR_REVERSE_HANDLE>",
+
+    "insecure": true,
+    "limit": null,
+    "page": null
+  },
+  "irods":{
+    "server": "localhost",
+    "port": 1247,
+    "url_prefix": "irods://localhost",
+    "webdav_prefix": "http://localhost",
+    "webdav_port": 80
+  }
+}
+```
+
