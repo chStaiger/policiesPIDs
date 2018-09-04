@@ -51,7 +51,7 @@ msiPidUnset(*path, *key, *result) (removes a key with its value from Handle syst
 
 ### Configuration
 
-- Copy /etc/irods_pid.json.template to /etc/irods_pid.json and edit:
+- Copy /etc/irods/irods_pid.json.template to /etc/irods/irods_pid.json and edit:
 - Handle certificates
 - (optional) Davrods endpoint
 
